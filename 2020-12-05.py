@@ -6,39 +6,42 @@ columns_upper = 7
 
 boarding_pass = "FBFBBFFRLR"
 
+
 def seat_id(boarding_pass):
-    
-    rows = [i for i in range(lower, upper+1)]
-    columns = [i for i in range(columns_lower, columns_upper+1)]
+    # use some list slicing!
+    rows = [i for i in range(lower, upper + 1)]
+    columns = [i for i in range(columns_lower, columns_upper + 1)]
     # the first 7 instructions are for moving in the rows...
-    for intsruction in boarding_pass[:7]:
-        # print(intsruction)
-        if intsruction == "F":
-            rows = rows[:int(len(rows)/2)]
+    for instruction in boarding_pass[:7]:
+        # print(instruction)
+        if instruction == "F":
+            # f - keep the lower half
+            rows = rows[: int(len(rows) / 2)]
             # print(rows)
-        if intsruction == "B":
+        if instruction == "B":
             # b - keep the upper half
-            rows = rows[int(len(rows)/2):]
+            rows = rows[int(len(rows) / 2) :]
             # print(rows)
 
     # the last three instructions are for moving in the columns ...
     for instruction in boarding_pass[7:]:
         # print(instruction)
         if instruction == "L":
-            # keep the upper half
-            columns = columns[:int(len(columns)/2)]
+            # keep the lowger half
+            columns = columns[: int(len(columns) / 2)]
             # print(columns)
         if instruction == "R":
             # keep the upper half
-            columns = columns[int(len(columns)/2):]
-            #print(columns)
+            columns = columns[int(len(columns) / 2) :]
+            # print(columns)
 
-    seat_id = rows[0]* 8 + columns[0]
-    
+    seat_id = rows[0] * 8 + columns[0]
+
     # print(f"{rows[0]}, {columns[0]}")
     # print(f"seat id: {seat_id}")
-    
+
     return seat_id
+
 
 print(seat_id(boarding_pass))
 
@@ -53,7 +56,7 @@ with open("2020-12-05_input.txt") as input:
         # print(f"{boarding_pass} - {seat_id_val}")
         if seat_id_val > highest_seat_id:
             highest_seat_id = seat_id_val
-        
+
 print(f"highest_seat_id: {highest_seat_id}")
 
 
@@ -63,7 +66,7 @@ seats.sort()
 
 for i, seat in enumerate(seats):
     try:
-        if ( (seats[i] + 1) != seats[i+1]):
+        if (seats[i] + 1) != seats[i + 1]:
             print(f"seats[{i}]: {seats[i]} next: {seats[i+1]}")
             print(f"missing seat: {seats[i] + 1}")
             break
