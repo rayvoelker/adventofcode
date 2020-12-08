@@ -28,8 +28,8 @@ def count_total_bags(bags, i):
 
 
 # first lets run through the list and fill the outermost bags list. This is also the list of all possible bags
-with open("2020-12-07_test_input.txt") as input:
-# with open("2020-12-07_input.txt") as input:
+# with open("2020-12-07_test_input.txt") as input:
+with open("2020-12-07_input.txt") as input:
     for line in input.readlines():
         line = line.strip("\n")
         bag = line.split(" bags")[0]
@@ -62,18 +62,16 @@ with open("2020-12-07_test_input.txt") as input:
     # print(bags_with_gold)
 
     total_sum = 0
-    for bags in outer_bags['shiny gold']:
+    for bags in outer_bags["shiny gold"]:
         count = count_total_bags(outer_bags[bags], 0)
         print(f"count {bags}: {count}")
-        total_sum += (outer_bags['shiny gold'][bags] * count_total_bags(outer_bags[bags], 0) )
-        total_sum += outer_bags['shiny gold'][bags]
+        total_sum += outer_bags["shiny gold"][bags] * count_total_bags(
+            outer_bags[bags], 0
+        )
+        total_sum += outer_bags["shiny gold"][bags]
         print()
-        
 
     print(total_sum)
     # print(outer_bags['shiny gold'])
 
     # print(count_total_bags(outer_bags[''], 0))
-
-
-
