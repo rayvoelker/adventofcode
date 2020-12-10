@@ -36,3 +36,5 @@ joltage_diffs.append(3)
 joltage_diffs_dict[3] += 1
 
 print(joltage_diffs_dict)
+
+print(joltage_diffs_dict[1] * joltage_diffs_dict[3])
