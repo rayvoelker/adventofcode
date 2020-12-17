@@ -149,7 +149,11 @@ while True:
         break
 
     # gather all the rules we want to delete:
-    target_deletions = [column["possible_rules"][0] for column in columns if len(column["possible_rules"]) == 1]
+    target_deletions = [
+        column["possible_rules"][0]
+        for column in columns
+        if len(column["possible_rules"]) == 1
+    ]
     # loop through the columns and remove the target_deletions
     for i, column in enumerate(columns):
         if len(column["possible_rules"]) == 1:
@@ -159,10 +163,10 @@ while True:
             # this seems like it should work... but doesn't
             # columns[i]['possible_rules'] = [rule for rules in column['possible_rules'] if rule not in target_deletions]
             new_rules = []
-            for rule in column['possible_rules']:
+            for rule in column["possible_rules"]:
                 if rule not in target_deletions:
                     new_rules.append(rule)
-            columns[i]['possible_rules'] = new_rules
+            columns[i]["possible_rules"] = new_rules
             # print()
 
     # columns[i]['possible_rules'] = [value for value in columns[i]['possible_rules'] if value != rule_name]
@@ -173,9 +177,20 @@ while True:
     #         # eliminate that rule from all other columns EXCEPT FOR THIS COLUMN!
     #         print()
 
-    print(sum(targets), end=', ')
+    print(sum(targets), end=", ")
 
+product_list = []
 print("column order: ")
 for i, column in enumerate(columns):
     print(f"{i}\t{column['possible_rules'][0]}: {ticket[i]}")
-print()
+    if column['possible_rules'][0].split(" ")[0] == "departure":
+        product_list.append(ticket[i])
+        
+print(product_list)
+
+product = 1
+for value in product_list:
+    product = product * value
+
+print(product)
+
