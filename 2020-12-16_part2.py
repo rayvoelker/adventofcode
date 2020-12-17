@@ -138,8 +138,6 @@ for i in range(len(rules_dict)):
                     if value != rule_name
                 ]
 
-print()
-
 # find all the columns where possible_rules has a length of 1 and eliminate that value from the other columns
 while True:
     target_sum = len(columns)
@@ -160,7 +158,7 @@ while True:
             pass
         else:
 
-            # this seems like it should work... but doesn't
+            # this seems like it should work... but doesn't ... just doing it with a for loop
             # columns[i]['possible_rules'] = [rule for rules in column['possible_rules'] if rule not in target_deletions]
             new_rules = []
             for rule in column["possible_rules"]:
@@ -169,20 +167,13 @@ while True:
             columns[i]["possible_rules"] = new_rules
             # print()
 
-    # columns[i]['possible_rules'] = [value for value in columns[i]['possible_rules'] if value != rule_name]
+    # print(sum(targets), end=", ")
 
-    # for i, column in enumerate(columns):
-    #     if len(column['possible_rules']) == 1:
-    #         print(f"{i} {column['possible_rules']} ")
-    #         # eliminate that rule from all other columns EXCEPT FOR THIS COLUMN!
-    #         print()
-
-    print(sum(targets), end=", ")
-
+# build a list where our ticket values star with "departure"
 product_list = []
-print("column order: ")
+print("column\tticket val\tname\n------\t----------\t---")
 for i, column in enumerate(columns):
-    print(f"{i}\t{column['possible_rules'][0]}: {ticket[i]}")
+    print(f"{i}\t{ticket[i]}\t\t{column['possible_rules'][0]}")
     if column["possible_rules"][0].split(" ")[0] == "departure":
         product_list.append(ticket[i])
 
