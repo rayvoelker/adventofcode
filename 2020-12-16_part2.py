@@ -183,9 +183,9 @@ product_list = []
 print("column order: ")
 for i, column in enumerate(columns):
     print(f"{i}\t{column['possible_rules'][0]}: {ticket[i]}")
-    if column['possible_rules'][0].split(" ")[0] == "departure":
+    if column["possible_rules"][0].split(" ")[0] == "departure":
         product_list.append(ticket[i])
-        
+
 print(product_list)
 
 product = 1
@@ -193,4 +193,3 @@ for value in product_list:
     product = product * value
 
 print(product)
-
