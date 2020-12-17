@@ -111,11 +111,11 @@ ticket that start with the word departure. What do you get if you multiply
 those six values together?
 """
 
-# start by assume every column in a ticket can be every "rule" 
+# start by assume every column in a ticket can be every "rule"
 
 columns = []
 for i in range(len(rules_dict)):
-    columns.append({'possible_rules': [value for value in rules_dict]})
+    columns.append({"possible_rules": [value for value in rules_dict]})
 
 print()
 
@@ -125,25 +125,28 @@ print()
 for i in range(len(rules_dict)):
     for j, ticket in enumerate(nearby_tickets):
         # print(j, ticket[i])
-        for rule_name in rules_dict:     
+        for rule_name in rules_dict:
             # print(rule_name)
-            if (ticket[i] not in rules_dict[rule_name][0]) and (ticket[i] not in rules_dict[rule_name][1]):
+            if (ticket[i] not in rules_dict[rule_name][0]) and (
+                ticket[i] not in rules_dict[rule_name][1]
+            ):
                 # eliminate rule from column
                 # print(f'eliminate {rule_name}')
-                columns[i]['possible_rules'] = [value for value in columns[i]['possible_rules'] if value != rule_name]
+                columns[i]["possible_rules"] = [
+                    value
+                    for value in columns[i]["possible_rules"]
+                    if value != rule_name
+                ]
 
 # find all the columns where possible_rules has a length of 1 and eliminate that value from the other columns
 while True:
     target_sum = len(columns)
-    targets = [len(value['possible_rules']) for j, value in enumerate(columns) ]
+    targets = [len(value["possible_rules"]) for j, value in enumerate(columns)]
 
     if sum(targets) == len(columns):
         break
 
-    
     # columns[i]['possible_rules'] = [value for value in columns[i]['possible_rules'] if value != rule_name]
-
-
 
     # for i, column in enumerate(columns):
     #     if len(column['possible_rules']) == 1:
