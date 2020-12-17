@@ -22,7 +22,7 @@ with open("2020-12-16_input.txt") as input:
 
     # read the ticket
     input.readline()
-    ticket = list(map(int, [i for i in input.readline().strip("\n").split(",")]))
+    orig_ticket = list(map(int, [i for i in input.readline().strip("\n").split(",")]))
 
     # read the nearby tickets
     input.readline()
@@ -173,9 +173,9 @@ while True:
 product_list = []
 print("column\tticket val\tname\n------\t----------\t---")
 for i, column in enumerate(columns):
-    print(f"{i}\t{ticket[i]}\t\t{column['possible_rules'][0]}")
+    print(f"{i}\t{orig_ticket[i]}\t\t{column['possible_rules'][0]}")
     if column["possible_rules"][0].split(" ")[0] == "departure":
-        product_list.append(ticket[i])
+        product_list.append(orig_ticket[i])
 
 print(product_list)
 
