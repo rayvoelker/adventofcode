@@ -83,4 +83,72 @@ nearby_tickets = [
 
 print(f"nearby_tickets: {len(nearby_tickets)}")
 
-# 267, 66, 827, 164, 121, 164, 511, 407, 685, 712, 733, 184, 64, 688
+print()
+
+# part 2
+"""
+For example, suppose you have the following notes:
+
+class: 0-1 or 4-19
+row: 0-5 or 8-19
+seat: 0-13 or 16-19
+
+your ticket:
+11,12,13
+
+nearby tickets:
+3,9,18
+15,1,5
+5,14,9
+
+Based on the nearby tickets in the above example, the first position must
+be row, the second position must be class, and the third position must be
+seat; you can conclude that in your ticket, class is 12, row is 11, and 
+seat is 13.
+
+Once you work out which field is which, look for the six fields on your
+ticket that start with the word departure. What do you get if you multiply
+those six values together?
+"""
+
+# start by assume every column in a ticket can be every "rule" 
+
+columns = []
+for i in range(len(rules_dict)):
+    columns.append({'possible_rules': [value for value in rules_dict]})
+
+print()
+
+# find a fit for the first column
+# i = 0
+
+for i in range(len(rules_dict)):
+    for j, ticket in enumerate(nearby_tickets):
+        # print(j, ticket[i])
+        for rule_name in rules_dict:     
+            # print(rule_name)
+            if (ticket[i] not in rules_dict[rule_name][0]) and (ticket[i] not in rules_dict[rule_name][1]):
+                # eliminate rule from column
+                # print(f'eliminate {rule_name}')
+                columns[i]['possible_rules'] = [value for value in columns[i]['possible_rules'] if value != rule_name]
+
+# find all the columns where possible_rules has a length of 1 and eliminate that value from the other columns
+while True:
+    target_sum = len(columns)
+    targets = [len(value['possible_rules']) for j, value in enumerate(columns) ]
+
+    if sum(targets) == len(columns):
+        break
+
+    
+    # columns[i]['possible_rules'] = [value for value in columns[i]['possible_rules'] if value != rule_name]
+
+
+
+    # for i, column in enumerate(columns):
+    #     if len(column['possible_rules']) == 1:
+    #         print(f"{i} {column['possible_rules']} ")
+    #         # eliminate that rule from all other columns EXCEPT FOR THIS COLUMN!
+    #         print()
+
+    print()
