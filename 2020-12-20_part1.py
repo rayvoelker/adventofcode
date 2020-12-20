@@ -5,8 +5,8 @@ from PIL import Image, ImageDraw
 image = Image.open("advent_of_code.png")
 image.thumbnail((100,100))
 
-# with open("2020-12-19_test_input.txt") as input:
-with open("2020-12-19_input.txt") as input:
+# with open("2020-12-20_test_input.txt") as input:
+with open("2020-12-20_input.txt") as input:
     # get the first line ... the tile id of the first tile
     # tile_id = input.readline()
     tiles = {}
